@@ -1,10 +1,12 @@
 var fs = require('fs')
-var contents = fs.readFileSync('files/simple0.cnf', 'utf8')
+var x = 'simple0'
+var k = 'files/'+ x +'.cnf'
+var contents = fs.readFileSync(k, 'utf8')
 var text = contents.split('\r\n')
 
 var clauses = ''
 
-for (i = 0; i < text.length; i++) {
+for (var i = 0; i < text.length; i++) {
     if ((text[i].charAt(0) != 'c') && (text[i].charAt(0) != 'p')) {
         clauses += text[i]
     }
@@ -14,7 +16,7 @@ clauses = clauses.substring(0, clauses.length - 2)
 
 clauses = clauses.split(' 0')
 
-for (i = 0; i < clauses.length; i++) {
+for (var i = 0; i < clauses.length; i++) {
     clauses[i] = clauses[i].split(' ')
 }
 
@@ -28,8 +30,8 @@ var variables = []
 
 var aux
 
-for (i = 0; i < clauses.length; i++) {
-    for (j = 0; j < clauses[i].length; j++) {
+for (var i = 0; i < clauses.length; i++) {
+    for (var j = 0; j < clauses[i].length; j++) {
         aux = clauses[i][j]
         if (aux < 0) {
             aux = aux * (-1)
@@ -46,7 +48,7 @@ var check = true
 
 var aux2
 
-for (i = 0; i < text.length; i++) {
+for (var i = 0; i < text.length; i++) {
     if (text[i].charAt(0) == 'p') {
         aux2 = text[i].split(' ')
     }

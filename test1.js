@@ -1,10 +1,11 @@
-var array = [false, false, false, false, false, false, false, false]
-var x = Math.pow(2, array.length) + 1
+var array = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+var x = Math.pow(2, array.length)
 while(x > 0){
-    console.log(array)
     array = newArray(array)
     x--
 }
+console.log(array)
+console.log(array.length)
 
 function newArray(array) {
     if (!array[0]) {
