@@ -1,8 +1,7 @@
 //--------------------------------------------------------------------------------
 
 exports.solve = function (fileName) {
-  var propsat = require('propsat')
-  let formula = propsat.readFormula(fileName)
+  let formula = readFormula(fileName)
   let result = doSolve(formula.clauses, formula.variables)
   return result
 }
@@ -81,15 +80,16 @@ function doSolve(clauses, assignment) {
     var have = true
     for (var i = 0; i < clauses.length; i++) {
       for (var c = 0; c < clauses[i].length; c++) {
+        var y
         var aux
         var not = false
-        x = Number(clauses[i][c])
-        if (x < 0) {
+        y = Number(clauses[i][c])
+        if (y < 0) {
           not = true
-          x = x * (-1)
+          y = y * (-1)
         }
-        x--
-        aux = assignment[x]
+        y--
+        aux = assignment[y]
         if (aux) {
           if (not) {
             final[i] = false
@@ -130,8 +130,9 @@ function doSolve(clauses, assignment) {
 function readFormula(fileName) {
 
   var fs = require('fs')
-  var file = fs.readFileSync(fileName)
-  let text = fileName.split('\r\n')
+  var file = fs.readFileSync(fileName, 'utf8')
+  
+  let text = file.split('\r\n')
 
   let clauses = readClauses(text)
   let variables = readVariables(clauses)

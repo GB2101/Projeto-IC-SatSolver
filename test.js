@@ -4,6 +4,8 @@ var k = 'files/'+ x +'.cnf'
 var contents = fs.readFileSync(k, 'utf8')
 var text = contents.split('\r\n')
 
+console.log(text)
+
 var clauses = ''
 
 for (var i = 0; i < text.length; i++) {
